@@ -8,6 +8,10 @@
     {{book.about|linebreaks}}
   </p>
 
+  <p>
+    {{book.updated_at|date:"m/d/Y h:m:s"}}
+  </p>
+
   <ul>
     {% for tag in book.tag_set.all %}
       <li>{{tag.name}}</li>
