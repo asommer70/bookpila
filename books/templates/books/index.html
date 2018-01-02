@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book Pila! | Books</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+
+    {% for book in books %}
+      <div>
+        <h2>{{ book.title }}</h2>
+        <p>
+          {{book.about}}
+        </p>
+      </div>
+    {% endfor %}
+  </body>
+</html>
