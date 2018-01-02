@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{book.title}}{% endblock %}
+
+{% block body %}
+  <h1>{{book.title}}</h1>
+  <p>
+    {{book.about|linebreaks}}
+  </p>
+
+  <ul>
+    {% for tag in book.tag_set.all %}
+      <li>{{tag.name}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
