@@ -85,9 +85,12 @@ class BookViewTests(TestCase):
         resp = self.client.get(reverse('books:index'))
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.book, resp.context['books'])
+        self.assertTemplateUsed(resp, 'books/index.html')
 
 
     def test_book_show_view(self):
-        resp = self.client.get(reverse('books:show', args=[1]))
+        resp = self.client.get(reverse('books:show', args=[self.book.pk]))
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(self.book, resp.context['book'])
+        self.assertTemplateUsed(resp, 'books/show.html')
+        self.assertContains(resp, self.book.title)
