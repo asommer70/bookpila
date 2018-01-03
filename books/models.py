@@ -3,7 +3,7 @@ from django.db import models
 class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     author = models.CharField(max_length=255)
     about = models.TextField(max_length=1024)
     isbn = models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class Book(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     books = models.ManyToManyField(Book)
 
     class Meta:

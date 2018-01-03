@@ -11,7 +11,7 @@
     <input type="submit" class="button small" value="Save">
   </form>
 
-  <a class="button tiny alert float-right" href="#">Delete</a>
+  <a class="button tiny alert float-right" href="{% url 'books:delete' pk=book.id %}">Delete</a>
   <br/>
 
 {% endblock %}

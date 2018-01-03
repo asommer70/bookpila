@@ -21,7 +21,6 @@ def show(req, pk):
 
 @login_required
 def new(req):
-    # book = get_object_or_404(Book, pk=pk)
     form = BookForm()
     if req.method == 'POST':
         form = BookForm(req.POST)
@@ -44,3 +43,11 @@ def edit(req, pk):
             messages.success(req, "{} has been updated.".format(book.title))
             return HttpResponseRedirect(reverse('books:show', args=[book.pk]))
     return render(req, 'books/edit.html', {'book': book, 'form': form})
+
+
+@login_required
+def delete(req, pk):
+    book = get_object_or_404(Book, pk=pk)
+    book.delete()
+    messages.success(req, "{} has been deleted.".format(book.title))
+    return HttpResponseRedirect(reverse('books:index'))
