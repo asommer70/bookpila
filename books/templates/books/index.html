@@ -5,6 +5,11 @@
 {% block body %}
   <h1>Books</h1>
 
+  {% if user.is_authenticated %}
+    <a class="button small" href="{% url 'books:new' %}">New Book</a>
+    <br/>
+  {% endif %}
+
   {% for book in books %}
     <div>
       <h2><a href="{% url 'books:show' pk=book.pk %}">{{ book.title }}</a></h2>

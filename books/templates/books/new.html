@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}New Book{% endblock %}
+
+{% block body %}
+  <h1>New Book</h1>
+
+  <div class="row">
+    <div class="large-4 columns">
+      <form class="form" action="" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" class="button" value="Create">
+      </form>
+    </div>
+  </div>
+{% endblock %}

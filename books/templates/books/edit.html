@@ -6,8 +6,12 @@
   <h1>Edit {{book.title}}</h1>
 
   <form class="form" action="" method="post">
-    {{contact_form.as_p}}
+    {{form.as_p}}
     {% csrf_token %}
-    <input type="submit" class="button small" value="Send">
+    <input type="submit" class="button small" value="Save">
   </form>
+
+  <a class="button tiny alert float-right" href="#">Delete</a>
+  <br/>
+
 {% endblock %}
