@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Book
-from .forms import BookForm
+from .models import Book, Tag
+from .forms import BookForm, TagForm
 
 
 @login_required
@@ -16,7 +16,22 @@ def index(req):
 @login_required
 def show(req, pk):
     book = get_object_or_404(Book, pk=pk)
-    return render(req, 'books/show.html', {'book': book})
+    tag_form = TagForm()
+
+    if req.method == 'POST':
+        tag_form = TagForm(req.POST)
+        if tag_form.is_valid():
+            for string in tag_form.cleaned_data['tags'].split(','):
+                tag = Tag.objects.get_or_create(name=string.strip())
+                tag[0].books.add(book)
+                tag[0].save()
+
+            messages.add_message(req, messages.SUCCESS, "Tags added...")
+            return HttpResponseRedirect(reverse('books:show', args=[book.pk]))
+        else:
+            messages.add_message(req, messages.ALERT, "Problem adding tags...")
+            return HttpResponseRedirect(reverse('books:show', args=[book.pk]))
+    return render(req, 'books/show.html', {'book': book, 'tag_form': tag_form})
 
 
 @login_required

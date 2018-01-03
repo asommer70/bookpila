@@ -18,5 +18,18 @@
     {% endfor %}
   </ul>
 
+  <div class="row">
+    <div class="columns large-4">
+      <button type="button" class="button small toggle" data-id="addtagsform">Add Tags</button>
+      <div class="hide" id="addtagsform">
+        <form class="form" action="" method="post">
+          {{tag_form.as_p}}
+          {% csrf_token %}
+          <input type="submit" class="button tiny" value="Save Tags">
+        </form>
+      </div>
+    </div>
+  </div>
+
   <a class="button small" href="{% url 'books:edit' pk=book.pk %}">Edit</a>
 {% endblock %}

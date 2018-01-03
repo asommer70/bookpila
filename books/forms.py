@@ -14,6 +14,11 @@ class BookForm(forms.ModelForm):
             'current_loc'
         ]
 
+
+class TagForm(forms.Form):
+    tags = forms.CharField(required=True, label="Add Tags")
+
+
 class ContactForm(forms.Form):
     email = forms.EmailField(label='Email')
     message = forms.CharField(widget=forms.Textarea, label='Message')
@@ -24,7 +29,7 @@ class ContactForm(forms.Form):
     )
 
     def clean_honeypost(self):
-        honeypot = self.cleanded_data['honeypot']
+        honeypot = self.cleaned_data['honeypot']
         if len(honeypot):
             raise forms.ValidationError("honeypost is not empty!")
         return honeypot
