@@ -9,6 +9,20 @@
   </head>
   <body>
     <div class="container">
+      {% if messages %}
+        <div class="row">
+          <div class="columns small-6">
+            {% for message in messages %}
+              <div class="callout {{message.tags}}" data-closable>
+                {{message}}
+                <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
       {% block body %}{% endblock %}
     </div>
 

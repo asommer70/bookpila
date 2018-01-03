@@ -17,4 +17,6 @@
       <li>{{tag.name}}</li>
     {% endfor %}
   </ul>
+
+  <a class="button small" href="{% url 'books:edit' pk=book.pk %}">Edit</a>
 {% endblock %}

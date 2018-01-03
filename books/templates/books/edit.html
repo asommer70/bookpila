@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit {{book.title}}{% endblock %}
+
+{% block body %}
+  <h1>Edit {{book.title}}</h1>
+
+  <form class="form" action="" method="post">
+    {{contact_form.as_p}}
+    {% csrf_token %}
+    <input type="submit" class="button small" value="Send">
+  </form>
+{% endblock %}
