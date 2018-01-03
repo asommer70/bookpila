@@ -1,0 +1,23 @@
+{
+  "name": "bookpila_components",
+  "version": "0.0.1",
+  "description": "JavaScript components for Book Pila!.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-sass -r -w ./scss/main.scss ../assets/css/main.css",
+    "js": "node index.js"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "django"
+  ],
+  "author": "Adam Sommer",
+  "license": "MIT",
+  "dependencies": {
+    "foundation-sites": "^6.4.4-rc1",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.7.2"
+  }
+}

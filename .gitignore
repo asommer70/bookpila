@@ -3,6 +3,8 @@
 .DS_Store
 bp/
 db.sqlite3
+node_modules
+assets/js/vendor
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
