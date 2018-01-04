@@ -22,8 +22,9 @@ from . import views
 
 urlpatterns = [
     path('books/', include('books.urls', namespace='books')),
+    path('api/', include('books.api_urls', namespace='api')),
     path('admin/', admin.site.urls),
-    path('api-auth', include('rest_framework.urls', namespace='api')),
+    path('api-auth', include('rest_framework.urls', namespace='api-auth')),
     path('', views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

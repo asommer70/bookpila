@@ -4,6 +4,10 @@ Web app to manage ePub, mobi, PDFs, etc.
 
 Developed using Django and Python3.
 
+## Requirements
+
+This web app requires ImageMagic and Ghostscript in order to manipulate PDF uploads.  By manipulate I mean to extract a cover photo.
+
 ## Plan
 
 * Maybe be able to read ePub files online.

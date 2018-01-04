@@ -1,5 +1,5 @@
 from rest_framework import serializers
-form . import models
+from . import models
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -14,6 +14,8 @@ class BookSerializer(serializers.ModelSerializer):
             'isbn',
             'file_url',
             'current_loc',
+            'upload',
+            'cover'
         )
         model = models.Book
 
