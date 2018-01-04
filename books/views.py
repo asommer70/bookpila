@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Book, Tag
 from .forms import BookForm, TagForm
-
+from .book_manipulations import *
 
 @login_required
 def index(req):
@@ -50,15 +50,19 @@ def new(req):
 @login_required
 def edit(req, pk):
     book = get_object_or_404(Book, pk=pk)
-    # form = BookForm(instance=book)
     form = BookForm(instance=book)
     if req.method == 'POST':
-        # form = BookForm(instance=book, data=req.POST, upload=req.FILES)
-        print('req.FILES:', req.FILES)
-        print('req.POST:', req.POST)
         form = BookForm(req.POST, req.FILES, instance=book)
         if form.is_valid():
             form.save()
+
+            # Pull out the first page of a PDF file and create an image from it.
+            if (book.upload.name[-3:] == 'pdf'):
+                book.cover = get_pdf_cover(book)
+                book.save()
+
+            # TODO:as add a cover field to Books... maybe make it an ImageField.
+
             messages.success(req, "{} has been updated.".format(book.title))
             return HttpResponseRedirect(reverse('books:show', args=[book.pk]))
     return render(req, 'books/edit.html', {'book': book, 'form': form})
