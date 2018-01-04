@@ -9,6 +9,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=100)
     file_url = models.URLField(blank=True, default="")
     current_loc = models.IntegerField(default=0)
+    upload = models.FileField(null=True)
 
     class Meta:
         ordering = ['-updated_at',]

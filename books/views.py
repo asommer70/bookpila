@@ -38,7 +38,7 @@ def show(req, pk):
 def new(req):
     form = BookForm()
     if req.method == 'POST':
-        form = BookForm(req.POST)
+        form = BookForm(req.POST, req.FILES)
         if form.is_valid():
             new_book = form.save()
             messages.add_message(req, messages.SUCCESS, "Book {} created...".format(new_book.title))
@@ -50,9 +50,13 @@ def new(req):
 @login_required
 def edit(req, pk):
     book = get_object_or_404(Book, pk=pk)
+    # form = BookForm(instance=book)
     form = BookForm(instance=book)
     if req.method == 'POST':
-        form = BookForm(instance=book, data=req.POST)
+        # form = BookForm(instance=book, data=req.POST, upload=req.FILES)
+        print('req.FILES:', req.FILES)
+        print('req.POST:', req.POST)
+        form = BookForm(req.POST, req.FILES, instance=book)
         if form.is_valid():
             form.save()
             messages.success(req, "{} has been updated.".format(book.title))

@@ -3,6 +3,13 @@ from django.core import validators
 from . import models
 
 class BookForm(forms.ModelForm):
+    upload = forms.FileField(required=False)
+    isbn = forms.CharField(required=False)
+    file_url = forms.URLField(required=False)
+    about = forms.CharField(widget=forms.Textarea, required=False)
+    author = forms.CharField(required=False)
+    current_loc = forms.IntegerField(required=False)
+
     class Meta:
         model = models.Book
         fields = [
@@ -11,7 +18,8 @@ class BookForm(forms.ModelForm):
             'about',
             'isbn',
             'file_url',
-            'current_loc'
+            'current_loc',
+            'upload'
         ]
 
 

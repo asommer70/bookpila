@@ -5,7 +5,7 @@
 {% block body %}
   <h1>Edit {{book.title}}</h1>
 
-  <form class="form" action="" method="post">
+  <form class="form" action="" method="post" enctype="multipart/form-data">
     {{form.as_p}}
     {% csrf_token %}
     <input type="submit" class="button small" value="Save">

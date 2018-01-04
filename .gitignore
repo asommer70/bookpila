@@ -5,6 +5,7 @@ bp/
 db.sqlite3
 node_modules
 assets/js/vendor
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

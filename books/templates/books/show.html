@@ -9,9 +9,17 @@
   </p>
 
   <p>
-    {{book.updated_at|date:"m/d/Y h:m:s"}}
+    <strong>Last Updated:</strong> {{book.updated_at|date:"m/d/Y h:m:s"}}
   </p>
 
+  <p>
+    <strong>File:</strong> <a href="{{book.upload.url}}" target="_blank">{{book.upload.name}}</a>
+    <br>
+  </p>
+
+
+  <strong>Tags:</strong>
+  <br/>
   <ul>
     {% for tag in book.tag_set.all %}
       <li>{{tag.name}}</li>
@@ -22,7 +30,7 @@
     <div class="columns large-4">
       <button type="button" class="button small toggle" data-id="addtagsform">Add Tags</button>
       <div class="hide" id="addtagsform">
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
           {{tag_form.as_p}}
           {% csrf_token %}
           <input type="submit" class="button tiny" value="Save Tags">

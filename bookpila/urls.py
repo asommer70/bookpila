@@ -26,5 +26,6 @@ urlpatterns = [
     path('api-auth', include('rest_framework.urls', namespace='api')),
     path('', views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'views.book_not_found'
