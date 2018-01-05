@@ -3,17 +3,33 @@
 {% block title %}Books{% endblock %}
 
 {% block body %}
-  <h1>Books</h1>
+  <h1 class="page-title">Books</h1>
 
-  {% if user.is_authenticated %}
-    <a class="button small" href="{% url 'books:new' %}">New Book</a>
-    <br/>
-  {% endif %}
+  <a class="button small float-right" href="{% url 'books:new' %}">New Book</a>
+  <br/>
 
-  {% for book in books %}
-    <div>
-      <h2><a href="{% url 'books:show' pk=book.pk %}">{{ book.title }}</a></h2>
-    </div>
-  {% endfor %}
+  <div class="row medium-up-4">
+    {% for book in books %}
+      <div class="column">
+        <div class="card" style="">
+          {% if book.cover %}
+            <a href="{% url 'books:show' pk=book.pk %}">
+              <img src="{{book.cover}}" alt="{{book.title}}" class="text-center" />
+            </a>
+          {% else %}
+            <div class="card-divider">
+              <a href="{% url 'books:show' pk=book.pk %}">{{ book.title }}</a>
+            </div>
+          {% endif %}
+          <div class="card-section">
+            <p>{{book.about|truncatechars:150}}</p>
+            <p>
+              <small>Updated on: {{book.updated_at|date:"m/d/Y h:m:s"}}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 
 {% endblock %}

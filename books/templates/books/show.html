@@ -3,51 +3,71 @@
 {% block title %}{{book.title}}{% endblock %}
 
 {% block body %}
-  <h1>{{book.title}}</h1>
-  <p>
-    {{book.about|linebreaks}}
-  </p>
-
-  <p>
-    <strong>Last Updated:</strong> {{book.updated_at|date:"m/d/Y h:m:s"}}
-  </p>
-
-  <p>
-    <strong>File:</strong>
-    {% if book.upload %}
-      <a href="{{book.upload.url}}" target="_blank">{{book.upload.name}}</a>
-    {% endif %}
-    <br>
-  </p>
-
-  <p>
-    <strong>Cover:</strong>
-    {% if book.cover %}
-      <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
-    {% endif %}
-  </p>
-
-
-  <strong>Tags:</strong>
-  <br/>
-  <ul>
-    {% for tag in book.tag_set.all %}
-      <li>{{tag.name}}</li>
-    {% endfor %}
-  </ul>
+  <h1 class="page-title">{{book.title}}</h1>
+  <a class="button small float-right" href="{% url 'books:edit' pk=book.pk %}">Edit</a>
+  <br/><br/>
 
   <div class="row">
-    <div class="columns large-4">
-      <button type="button" class="button small toggle" data-id="addtagsform">Add Tags</button>
-      <div class="hide" id="addtagsform">
-        <form class="form" action="" method="post" enctype="multipart/form-data">
-          {{tag_form.as_p}}
-          {% csrf_token %}
-          <input type="submit" class="button tiny" value="Save Tags">
-        </form>
+    <div class="columns large-6">
+      {% if book.cover %}
+        <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
+      {% endif %}
+
+      <p>
+        {{book.about|linebreaks}}
+      </p>
+    </div>
+
+    <div class="columns large-6">
+      <div class="row">
+        <div class="columns large-12">
+          <strong>Download File:</strong> &nbsp;&nbsp;
+          {% if book.upload %}
+            <a href="{{book.upload.url}}" target="_blank">{{book.upload.name}}</a>
+          {% endif %}
+          <br>
+        </div>
       </div>
+
+      <br/>
+
+      <div class="row">
+        <div class="columns large-12">
+          <strong>Tags:</strong>
+          <br/><br/>
+
+          {% for tag in book.tag_set.all %}
+            <span class="badge tag">{{tag.name}}</span>
+          {% endfor %}
+          <br/>
+        </div>
+      </div>
+
+      <br/>
+
+      <div class="row">
+        <div class="columns large-4">
+          <button type="button" class="button small toggle" data-id="addtagsform">Add Tags</button>
+          <div class="hide" id="addtagsform">
+            <form class="form" action="" method="post" enctype="multipart/form-data">
+              {{tag_form.as_p}}
+              {% csrf_token %}
+              <input type="submit" class="button tiny" value="Save Tags">
+            </form>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <a class="button small" href="{% url 'books:edit' pk=book.pk %}">Edit</a>
+  <div class="row">
+    <div class="columns large-6">
+      <hr/>
+      <p>
+        <small>Last Updated: {{book.updated_at|date:"m/d/Y h:m:s"}}</small>
+      </p>
+    </div>
+  </div>
+
 {% endblock %}

@@ -3,12 +3,21 @@
 @import 'includes';
 
 body {
-  background-color: #eeeeee;
+  // background-color: #eeeeee;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: white;
+  // max-width: 75em;
+  // margin: 0 auto;
+  // background-color: white;
+}
+
+.page-title {
+  display: inline-block;
+  max-width: 30em;
+}
+
+.badge.tag {
+  font-size: 16px;
+  border-radius: 4px;
 }
