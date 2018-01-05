@@ -11,6 +11,7 @@ class Book(models.Model):
     current_loc = models.IntegerField(default=0)
     upload = models.FileField(null=True)
     cover = models.CharField(max_length=255, blank=True, null=True, default="")
+    tags = models.ManyToManyField('Tag')
 
     class Meta:
         ordering = ['-updated_at',]
