@@ -61,7 +61,10 @@ def edit(req, pk):
                 book.cover = get_pdf_cover(book)
                 book.save()
 
-            # TODO:as add a cover field to Books... maybe make it an ImageField.
+            print('book.upload.name:', book.upload.name)
+            if (book.upload.name[-4:] == 'epub'):
+                book.cover = get_epub_cover(book)
+                book.save()
 
             messages.success(req, "{} has been updated.".format(book.title))
             return HttpResponseRedirect(reverse('books:show', args=[book.pk]))

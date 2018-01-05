@@ -13,12 +13,18 @@
   </p>
 
   <p>
-    <strong>File:</strong> <a href="{{book.upload.url}}" target="_blank">{{book.upload.name}}</a>
+    <strong>File:</strong>
+    {% if book.upload %}
+      <a href="{{book.upload.url}}" target="_blank">{{book.upload.name}}</a>
+    {% endif %}
     <br>
   </p>
 
   <p>
-    <strong>Cover:</strong> <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
+    <strong>Cover:</strong>
+    {% if book.cover %}
+      <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
+    {% endif %}
   </p>
 
 
