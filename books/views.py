@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -77,3 +78,16 @@ def delete(req, pk):
     book.delete()
     messages.success(req, "{} has been deleted.".format(book.title))
     return HttpResponseRedirect(reverse('books:index'))
+
+
+@login_required
+def remove_tag(req, pk):
+    if req.method == 'POST':
+        book = Book.objects.get(id=pk)
+        tag = Tag.objects.get(id=req.POST['tagid'])
+        tag.books.remove(book)
+        book.save()
+        messages.success(req, "{} has been removed.".format(tag.name))
+        return JsonResponse({'message': "{} has been removed.".format(tag.name)})
+    else:
+        return HttpResponseRedirect(reverse('books:show', args=[book.id]))

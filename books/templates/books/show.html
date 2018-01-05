@@ -37,7 +37,11 @@
           <br/><br/>
 
           {% for tag in book.tag_set.all %}
-            <span class="badge tag">{{tag.name}}</span>
+            <span class="badge tag">
+              {{tag.name}}
+              <span class="remove-tag hide" data-bookid="{{book.id}}" data-tagid="{{tag.id}}">&times;</span>
+              {% csrf_token %}
+            </span>
           {% endfor %}
           <br/>
         </div>
