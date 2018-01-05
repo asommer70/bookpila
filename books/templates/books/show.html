@@ -58,15 +58,20 @@
         </div>
       </div>
 
-    </div>
-  </div>
+      <div class="row">
+        <div class="columns large-12">
+          <hr/>
 
-  <div class="row">
-    <div class="columns large-6">
-      <hr/>
-      <p>
-        <small>Last Updated: {{book.updated_at|date:"m/d/Y h:m:s"}}</small>
-      </p>
+          <p>
+            <small>ISBN: {{book.isbn}}</small>
+            <br/>
+            <small>Author: {{book.author}}</small>
+            <br/>
+            <small>Last Updated: {{book.updated_at|date:"m/d/Y h:m:s"}}</small>
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
 
