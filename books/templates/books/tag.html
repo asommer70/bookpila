@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tag {{tag.name}}{% endblock %}
+
+{% block body %}
+  <h1 class="page-title">Tag: {{tag.name}}</h1>
+
+  <a class="button small float-right" href="{% url 'books:new' %}">New Book</a>
+  <br/>
+
+  <div class="row medium-up-4">
+    {% for book in tag.books.all %}
+      <div class="column">
+        <div class="card" style="">
+          {% if book.cover %}
+            <a href="{% url 'books:show' pk=book.pk %}">
+              <img src="{{book.cover}}" alt="{{book.title}}" class="text-center" />
+            </a>
+          {% else %}
+            <div class="card-divider">
+              <a href="{% url 'books:show' pk=book.pk %}">{{ book.title }}</a>
+            </div>
+          {% endif %}
+          <div class="card-section">
+            <p>{{book.about|truncatechars:150}}</p>
+            <p>
+              <small>Updated on: {{book.updated_at|date:"m/d/Y h:m:s"}}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

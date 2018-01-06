@@ -4808,5 +4808,7 @@ a.thumbnail {
 .badge.tag {
   font-size: 16px;
   border-radius: 4px; }
+  .badge.tag a {
+    color: white; }
   .badge.tag .remove-tag {
     cursor: pointer; }

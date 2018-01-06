@@ -8,11 +8,11 @@ $(document).ready(function() {
   });
 
   $('.badge.tag').on('mouseenter', function(e) {
-    $($(this).children()[0]).toggleClass('hide');
+    $($(this).children()[1]).toggleClass('hide');
   });
 
   $('.badge.tag').on('mouseleave', function(e) {
-    $($(this).children()[0]).toggleClass('hide');
+    $($(this).children()[1]).toggleClass('hide');
   });
 
   $('.remove-tag').on('click', function(e) {

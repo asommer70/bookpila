@@ -91,3 +91,9 @@ def remove_tag(req, pk):
         return JsonResponse({'message': "{} has been removed.".format(tag.name)})
     else:
         return HttpResponseRedirect(reverse('books:show', args=[book.id]))
+
+
+@login_required
+def tag(req, pk):
+    tag = Tag.objects.get(id=pk)
+    return render(req, 'books/tag.html', {'tag': tag})
