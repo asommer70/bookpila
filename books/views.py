@@ -81,6 +81,12 @@ def delete(req, pk):
 
 
 @login_required
+def search(req, term):
+    books = Book.objects.filter(title__icontains=term)
+    return render(req, 'books/index.html', {'books': books, 'term': term})
+
+
+@login_required
 def remove_tag(req, pk):
     if req.method == 'POST':
         book = Book.objects.get(id=pk)

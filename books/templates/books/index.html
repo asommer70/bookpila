@@ -3,8 +3,9 @@
 {% block title %}Books{% endblock %}
 
 {% block body %}
-  <h1 class="page-title">Books</h1>
-
+  <h1 class="page-title">{% if not term %}Books{% else %}Books with <em>"{{term}}"</em> in the Title{% endif %}</h1>
+  <br />
+  
   <a class="button small float-right" href="{% url 'books:new' %}">New Book</a>
   <br/>
 

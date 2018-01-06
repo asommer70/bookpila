@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:pk>/delete', views.delete, name='delete'),
     path('<int:pk>/remove_tag', views.remove_tag, name='remove_tag'),
     path('tags/<int:pk>', views.tag, name='tags'),
+    path('search/<str:term>', views.search, name='search'),
 ]

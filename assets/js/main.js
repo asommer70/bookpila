@@ -29,4 +29,15 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('#searchbtn').on('click', function(e) {
+    e.preventDefault();
+    window.location.href = '/books/search/' + $('#search').val();
+  });
+
+  $('#search').keydown(function (e){
+    if (e.keyCode == 13){
+      window.location.href = '/books/search/' + this.value;
+    }
+  });
 });
