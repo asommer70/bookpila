@@ -9,15 +9,24 @@
 
   <div class="row">
     <div class="columns large-6">
-      {% if book.cover %}
-        <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
-      {% elif book.cover_image %}
-          <img src="{{book.cover_image.url}}" alt="{{book.title}}" width="250" />
+      {% if book.cover_image %}
+        <img class="cover-image" src="{{book.cover_image.url}}" alt="{{book.title}}" width="250" />
+      {% elif book.cover %}
+        <img class="cover-image" src="{{book.cover}}" alt="{{book.title}}" width="250" />
       {% endif %}
 
       <p>
         {{book.about|linebreaks}}
       </p>
+
+      <script>
+      console.log('ePub:', ePub);
+      	var Book = ePub("{{book.upload.url}}");
+      	Book.renderTo("area");
+      </script>
+      <div onclick="Book.prevPage();">‹</div>
+      <div id="area"></div>
+      <div onclick="Book.nextPage();">›</div>
     </div>
 
     <div class="columns large-6">
