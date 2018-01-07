@@ -6,8 +6,8 @@
   <h1>New Book</h1>
 
   <div class="row">
-    <div class="large-4 columns">
-      <form class="form" action="" method="post">
+    <div class="large-5 columns">
+      <form class="form" method="post" enctype="multipart/form-data">
         {{form.as_p}}
         {% csrf_token %}
         <input type="submit" class="button" value="Create">

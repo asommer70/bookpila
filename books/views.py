@@ -42,6 +42,15 @@ def new(req):
         form = BookForm(req.POST, req.FILES)
         if form.is_valid():
             new_book = form.save()
+            # Pull out the first page of a PDF file and create an image from it.
+            if (new_book.upload.name[-3:] == 'pdf'):
+                new_book.cover = get_pdf_cover(new_book)
+                new_book.save()
+
+            if (new_book.upload.name[-4:] == 'epub'):
+                new_book.cover = get_epub_cover(new_book)
+                new_book.save()
+                
             messages.add_message(req, messages.SUCCESS, "Book {} created...".format(new_book.title))
             return HttpResponseRedirect(reverse('books:show', args=[new_book.pk]))
 
@@ -62,7 +71,6 @@ def edit(req, pk):
                 book.cover = get_pdf_cover(book)
                 book.save()
 
-            print('book.upload.name:', book.upload.name)
             if (book.upload.name[-4:] == 'epub'):
                 book.cover = get_epub_cover(book)
                 book.save()
