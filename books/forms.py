@@ -5,10 +5,10 @@ from . import models
 class BookForm(forms.ModelForm):
     upload = forms.FileField(required=False)
     isbn = forms.CharField(required=False)
-    file_url = forms.URLField(required=False)
     about = forms.CharField(widget=forms.Textarea, required=False)
     author = forms.CharField(required=False)
     current_loc = forms.IntegerField(required=False)
+    cover_image = forms.ImageField(required=False)
 
     class Meta:
         model = models.Book
@@ -17,9 +17,9 @@ class BookForm(forms.ModelForm):
             'author',
             'about',
             'isbn',
-            'file_url',
             'current_loc',
-            'upload'
+            'upload',
+            'cover_image'
         ]
 
 

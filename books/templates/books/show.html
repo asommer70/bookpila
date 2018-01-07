@@ -11,6 +11,8 @@
     <div class="columns large-6">
       {% if book.cover %}
         <img src="{{book.cover}}" alt="{{book.title}}" width="250" />
+      {% elif book.cover_image %}
+          <img src="{{book.cover_image.url}}" alt="{{book.title}}" width="250" />
       {% endif %}
 
       <p>
