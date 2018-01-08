@@ -19,14 +19,15 @@
         {{book.about|linebreaks}}
       </p>
 
-      <script>
-      console.log('ePub:', ePub);
-      	var Book = ePub("{{book.upload.url}}");
-      	Book.renderTo("area");
-      </script>
-      <div onclick="Book.prevPage();">‹</div>
-      <div id="area"></div>
-      <div onclick="Book.nextPage();">›</div>
+      {% if type == 'epub' %}
+        <button class="button" id="read-book" data-url="{{book.upload.url}}">Read Book</button>
+        <div id="book-reader">
+          <div id="book-prev" class="page-turn">&#8678;</div>
+          <div id="book-next" class="page-turn">&#8680;</div>
+          <div id="book-close">&times;</div>
+          <div id="book-area"></div>
+        </div>
+      {% endif %}
     </div>
 
     <div class="columns large-6">

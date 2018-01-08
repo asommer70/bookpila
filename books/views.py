@@ -32,7 +32,11 @@ def show(req, pk):
         else:
             messages.add_message(req, messages.ALERT, "Problem adding tags...")
             return HttpResponseRedirect(reverse('books:show', args=[book.pk]))
-    return render(req, 'books/show.html', {'book': book, 'tag_form': tag_form})
+    return render(req, 'books/show.html', {
+        'book': book,
+        'type': book.upload.name.split('.')[-1],
+        'tag_form': tag_form
+    })
 
 
 @login_required
@@ -50,7 +54,7 @@ def new(req):
             if (new_book.upload.name[-4:] == 'epub'):
                 new_book.cover = get_epub_cover(new_book)
                 new_book.save()
-                
+
             messages.add_message(req, messages.SUCCESS, "Book {} created...".format(new_book.title))
             return HttpResponseRedirect(reverse('books:show', args=[new_book.pk]))
 
