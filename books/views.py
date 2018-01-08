@@ -115,3 +115,13 @@ def remove_tag(req, pk):
 def tag(req, pk):
     tag = Tag.objects.get(id=pk)
     return render(req, 'books/tag.html', {'tag': tag})
+
+@login_required
+def current_loc(req, pk):
+    book = Book.objects.get(pk=pk)
+    if req.method == 'PUT':
+        book.current_loc = req.PUT['current_loc']
+        book.save()
+        return JsonResponse({'message': "{} has been updated.".format(book.title)})
+    else:
+        return JsonResponse({'current_loc': book.current_loc})

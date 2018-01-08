@@ -7,7 +7,7 @@ class Book(models.Model):
     author = models.CharField(max_length=255, blank=True, null=True)
     about = models.TextField(max_length=1024, blank=True, null=True)
     isbn = models.CharField(max_length=100, blank=True, null=True)
-    current_loc = models.IntegerField(default=0, blank=True, null=True)
+    current_loc = models.CharField(max_length=255, blank=True, null=True, default="")
     upload = models.FileField(null=True, blank=True)
     cover = models.CharField(max_length=255, blank=True, null=True, default="")
     cover_image = models.ImageField(blank=True, null=True)

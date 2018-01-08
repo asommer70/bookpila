@@ -1,6 +1,8 @@
 $(document).ready(function() {
   $(document).foundation();
 
+  // TODO:as get an API token.
+
   // Register callbacks to use arrow keys to turn pages.
   // Needs to be up here before the Book is rendered.... I guess.
   EPUBJS.Hooks.register("beforeChapterDisplay").pageTurns = function (callback, renderer) {
@@ -94,6 +96,7 @@ $(document).ready(function() {
     // Render the book put the object on the window object.
     window.Book = ePub($this.data().url);
     window.Book.renderTo("book-area");
+    window.Book.locChangeCount = 0;
 
     window.Book.on('book:ready', function() {
       console.log('book:ready window.Book:', window.Book);
@@ -102,7 +105,7 @@ $(document).ready(function() {
       // window.Book.goto(localStorage.getItem(bookId));
       $.ajax({
         method: 'get',
-        url: '/api/books/' + bookId,
+        url: '/books/' + bookId + '/current_loc',
         success: function(data) {
           console.log('get success data:', data);
         }
@@ -110,16 +113,20 @@ $(document).ready(function() {
     });
 
     window.Book.on('renderer:locationChanged', function(locationCfi) {
-      console.log('renderer:locationChanged locationCfi:', locationCfi);
+      console.log('renderer:locationChanged locationCfi:', locationCfi, 'window.Book.locChangeCount:', window.Book.locChangeCount);
       localStorage.setItem(bookId, locationCfi);
-      $.ajax({
-        method: 'put',
-        url: '/api/books/' + bookId,
-        data: 'current_loc=' + locationCfi,
-        success: function(data) {
-          console.log('get success data:', data);
-        }
-      })
+
+      if (window.Book.locChangeCount > 1) {
+        $.ajax({
+          method: 'put',
+          url: '/books/' + bookId + '/current_loc',
+          data: 'current_loc=' + locationCfi,
+          success: function(data) {
+            console.log('put success data:', data);
+          }
+        });
+      }
+      window.Book.locChangeCount++;
     });
 
     $('#book-prev').on('click', function(e) {

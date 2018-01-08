@@ -10,11 +10,11 @@ class TagSerializer(serializers.ModelSerializer):
             'books'
         )
         model = models.Tag
-        
+
 
 
 class BookSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(read_only=False, many=True)
+    tags = TagSerializer(read_only=True, many=True)
     # tags = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
@@ -26,10 +26,10 @@ class BookSerializer(serializers.ModelSerializer):
             'author',
             'about',
             'isbn',
-            'file_url',
             'current_loc',
             'upload',
             'cover',
+            'cover_image',
             'tags'
         )
         model = models.Book
