@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from rest_framework.authtoken.models import Token
 from .models import Book, Tag
 from .forms import BookForm, TagForm
 from .book_manipulations import *
@@ -35,6 +36,7 @@ def show(req, pk):
     return render(req, 'books/show.html', {
         'book': book,
         'type': book.upload.name.split('.')[-1],
+        'token': Token.objects.get(user=req.user).key,
         'tag_form': tag_form
     })
 

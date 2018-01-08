@@ -105,9 +105,10 @@ $(document).ready(function() {
       // window.Book.goto(localStorage.getItem(bookId));
       $.ajax({
         method: 'get',
-        url: '/books/' + bookId + '/current_loc',
+        url: '/api/books/' + bookId,
         success: function(data) {
           console.log('get success data:', data);
+          window.Book.goto(data.current_loc);
         }
       });
     });
@@ -119,8 +120,11 @@ $(document).ready(function() {
       if (window.Book.locChangeCount > 1) {
         $.ajax({
           method: 'put',
-          url: '/books/' + bookId + '/current_loc',
+          url: '/api/books/' + bookId,
           data: 'current_loc=' + locationCfi,
+          headers: {
+              Authorization: 'Token ' + token,
+          },
           success: function(data) {
             console.log('put success data:', data);
           }
