@@ -15,7 +15,6 @@ class TagSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
-    # tags = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     cover_image = serializers.ImageField(read_only=True)
     upload = serializers.FileField(read_only=True)
 

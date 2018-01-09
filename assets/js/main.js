@@ -1,8 +1,6 @@
 $(document).ready(function() {
   $(document).foundation();
 
-  // TODO:as get an API token.
-
   // Register callbacks to use arrow keys to turn pages.
   // Needs to be up here before the Book is rendered.... I guess.
   EPUBJS.Hooks.register("beforeChapterDisplay").pageTurns = function (callback, renderer) {
@@ -87,6 +85,7 @@ $(document).ready(function() {
 
     var idParts = window.location.pathname.split('/');
     var bookId = idParts[idParts.length - 1];
+    var bookData;
 
     // Display the book-reader div.
     $bookReader = $('#book-reader');
@@ -99,32 +98,34 @@ $(document).ready(function() {
     window.Book.locChangeCount = 0;
 
     window.Book.on('book:ready', function() {
-      console.log('book:ready window.Book:', window.Book);
-      // window.Book.currentChapter.cfi = 'epubcfi(/6/18[chapter001]!/4/2[pg133]/2[pg134]/1:0)';
-      // window.Book.locationCfi = 'epubcfi(/6/18[chapter001]!/4/140[pg203]/1:192)';
-      // window.Book.goto(localStorage.getItem(bookId));
       $.ajax({
         method: 'get',
         url: '/api/books/' + bookId,
+        headers: {
+            Authorization: 'Token ' + token,
+            contentType: 'application/json; charset=utf-8',
+        },
         success: function(data) {
-          console.log('get success data:', data);
+          bookData = data;
           window.Book.goto(data.current_loc);
         }
       });
     });
 
     window.Book.on('renderer:locationChanged', function(locationCfi) {
-      console.log('renderer:locationChanged locationCfi:', locationCfi, 'window.Book.locChangeCount:', window.Book.locChangeCount);
       localStorage.setItem(bookId, locationCfi);
 
       if (window.Book.locChangeCount > 1) {
+        bookData.current_loc = locationCfi;
         $.ajax({
           method: 'put',
           url: '/api/books/' + bookId,
-          data: 'current_loc=' + locationCfi,
+          data: bookData,
           headers: {
               Authorization: 'Token ' + token,
+              contentType: 'application/json; charset=utf-8',
           },
+          dataType: 'json',
           success: function(data) {
             console.log('put success data:', data);
           }
