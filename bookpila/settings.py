@@ -153,3 +153,6 @@ REST_FRAMEWORK = {
         'user': '50/minute'
     }
 }
+
+LOGIN_REDIRECT_URL = "books:index"
+# LOGOUT_REDIRECT_URL = "/accounts/logout"

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="columns large-6">
+
+      <h1>{{user.username}}</h1>
+
+      <p>
+        <strong>Email:</strong> {{user.email}}
+      </p>
+
+      <p>
+        <strong>Token: </strong> {{token}}
+      </p>
+    </div>
+  </div>
+{% endblock %}

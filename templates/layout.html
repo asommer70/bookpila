@@ -17,9 +17,19 @@
         </ul>
       </div>
       <div class="top-bar-right">
-        <ul class="menu">
+        <ul class="dropdown menu" data-dropdown-menu>
           <li><input type="search" placeholder="Search" id="search"></li>
           <li><button type="button" class="button" id="searchbtn">Search</button></li>
+          {% if user.is_authenticated %}
+            <li>
+              <a href="/accounts/profile">{{user.username}}</a>
+              <ul class="menu vertical">
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+          {% else %}
+            <li><a href="/accounts/login">Login</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
