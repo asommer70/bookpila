@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,6 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates',],
+        'DIRS': [BASE_DIR + '/templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,9 +80,9 @@ WSGI_APPLICATION = 'bookpila.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'YOUR_DB_USER',
-        'USER': 'YOUR_DB_PASS',
-        'PASSWORD': 'reading100',
+        'NAME': 'bookpila',
+        'USER': 'YOUR_DB_USER',
+        'PASSWORD': 'YOUR_DB_PASS',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -125,11 +127,11 @@ USE_TZ = True
 
 STATIC_URL = '/assets/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, '/assets'),
 )
 
 # Where media files are uploaded.
-MEDIA_ROOT = BASE_DIR + '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
 MEDIA_URL = '/media/'
 
 # REST rest_framework
@@ -153,4 +155,10 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = "books:index"
-# LOGOUT_REDIRECT_URL = "/accounts/logout"
+
+
+logging.basicConfig(
+    level = logging.DEBUG,
+    format = '%(asctime)s %(levelname)s %(message)s',
+    filename = '/tmp/djangoLog.log',
+)
