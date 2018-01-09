@@ -24,7 +24,7 @@ SECRET_KEY = '3dr)-=ecjsih1i(p45j&=65(e^hei_6qb%tx-9h60*b*wp2y*k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bookpila']
 
 
 # Application definition
@@ -77,12 +77,10 @@ WSGI_APPLICATION = 'bookpila.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bookpila_dev',
-        'USER': 'adam',
-        'PASSWORD': '',
+        'NAME': 'YOUR_DB_USER',
+        'USER': 'YOUR_DB_PASS',
+        'PASSWORD': 'reading100',
         'HOST': 'localhost',
         'PORT': '',
     }
