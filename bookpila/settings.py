@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'bookpila.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'YOUR_DB_USER',
-        'USER': 'YOUR_DB_PASS',
-        'PASSWORD': 'reading100',
+        'NAME': 'bookpila_dev',
+        'USER': 'adam',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -153,4 +153,3 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = "books:index"
-# LOGOUT_REDIRECT_URL = "/accounts/logout"
