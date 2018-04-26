@@ -25,7 +25,7 @@ SECRET_KEY = '3dr)-=ecjsih1i(p45j&=65(e^hei_6qb%tx-9h60*b*wp2y*k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bookpila']
+ALLOWED_HOSTS = ['bookpila', 'localhost', 'linux']
 
 
 # Application definition
@@ -127,11 +127,12 @@ USE_TZ = True
 
 STATIC_URL = '/assets/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '/assets'),
+    os.path.join(BASE_DIR, 'assets'),
 )
 
 # Where media files are uploaded.
-MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_ROOT = BASE_DIR + '/media/'
 MEDIA_URL = '/media/'
 
 # REST rest_framework

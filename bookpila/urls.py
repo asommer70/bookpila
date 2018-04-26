@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', views.profile),
     path('logout', views.logout_view),
+    path('api/login', views.api_login, name="api_login"),
     path('', views.IndexView.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

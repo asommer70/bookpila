@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views import generic
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import logout
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 
 
 def book_not_found(req):
@@ -23,3 +26,23 @@ class IndexView(generic.RedirectView):
 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
+
+
+@csrf_exempt
+def api_login(request):
+        if request.method == 'POST':
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user:
+                return JsonResponse({
+                    'message': "Thank you for logging in.",
+                    'id': user.id,
+                    'username': user.username,
+                    'token': user.auth_token.key
+        		})
+            else:
+                return JsonResponse({
+		            'message': 'Bad username or password.',
+                    'id': None,
+                    'username': None,
+                    'token': None
+                })
