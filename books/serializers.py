@@ -17,6 +17,16 @@ class BookSerializer(serializers.ModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
     cover_image = serializers.ImageField(read_only=True)
     upload = serializers.FileField(read_only=True)
+    cover_url = serializers.SerializerMethodField()
+
+    def get_cover_url(self, obj):
+        request = self.context.get('request')
+
+        if obj.cover_image:
+            return request.build_absolute_uri(obj.cover_image.url)
+        elif obj.cover:
+            return request.build_absolute_uri(obj.cover)
+
 
     class Meta:
         fields = (
@@ -31,6 +41,8 @@ class BookSerializer(serializers.ModelSerializer):
             'upload',
             'cover',
             'cover_image',
+            'cover_url',
             'tags'
         )
+        # exclude = ['cover']
         model = models.Book
