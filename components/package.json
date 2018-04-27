@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "JavaScript components for Book Pila!.",
   "main": "index.js",
-  "repository" : { 
-     "type" : "git",
-     "url" : "https://github.com/asommer70/bookpila.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asommer70/bookpila.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "foundation-sites": "^6.4.4-rc1",
-    "jquery": "^3.2.1",
-    "node-sass": "^4.7.2"
+    "jquery": "^3.3.1",
+    "node-sass": "https://github.com/sass/node-sass/tarball/v5"
   }
 }

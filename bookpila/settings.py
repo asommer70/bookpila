@@ -25,7 +25,7 @@ SECRET_KEY = '3dr)-=ecjsih1i(p45j&=65(e^hei_6qb%tx-9h60*b*wp2y*k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bookpila', 'localhost', 'linux']
+ALLOWED_HOSTS = ['bookpila', 'localhost', 'linux', '10.3.10.143']
 
 
 # Application definition
