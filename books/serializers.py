@@ -38,6 +38,7 @@ class BookSerializer(serializers.ModelSerializer):
             'about',
             'isbn',
             'current_loc',
+            'current_loc_folio',
             'upload',
             'cover',
             'cover_image',
