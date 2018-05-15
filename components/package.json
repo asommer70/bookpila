@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node-sass -r -w ./scss/main.scss ../assets/css/main.css",
     "js": "node index.js",
-    "sass": "node-sass -r ./scss/main.scss ../assets/css/main.css"
+    "sass": "sass -t compressed scss/main.scss ../assets/css/main.css",
+    "sass:watch": "sass -t compressed --watch scss:../assets/css"
   },
   "keywords": [
     "javascript",
@@ -22,7 +23,6 @@
   "license": "MIT",
   "dependencies": {
     "foundation-sites": "^6.4.4-rc1",
-    "jquery": "^3.3.1",
-    "node-sass": "https://github.com/sass/node-sass/tarball/v5"
+    "jquery": "^3.3.1"
   }
 }

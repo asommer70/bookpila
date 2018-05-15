@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils import timezone
+
 
 class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
     title = models.CharField(max_length=255, unique=True)
     author = models.CharField(max_length=255, blank=True, null=True)
     about = models.TextField(max_length=1024, blank=True, null=True)
@@ -19,6 +21,9 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        return super(Book, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):

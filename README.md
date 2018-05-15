@@ -63,6 +63,14 @@ Migrate the database, create superuser, and create token for that user:
 
 **NOTE:** change $USER to whatever username you used for *createsuperuser*.
 
+Install the *sass* RubyGem:
+
+```
+gem install sass
+```
+
+**Note:** this requires having *ruby* installed on the system.  Ruby can be installed with ```sudo apt-get install ruby``` on Ubuntu/Debian based systems.
+
 Install and build the front-end JavaScript components:
 
 ```
