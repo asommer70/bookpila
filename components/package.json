@@ -12,7 +12,9 @@
     "start": "node-sass -r -w ./scss/main.scss ../assets/css/main.css",
     "js": "node index.js",
     "sass": "sass -t compressed scss/main.scss ../assets/css/main.css",
-    "sass:watch": "sass -t compressed --watch scss:../assets/css"
+    "sass:watch": "sass -t compressed --watch scss:../assets/css",
+    "sassc": "sassc -m -t compressed  scss/main.scss ../assets/css/main.css",
+    "sassc:watch": "./sass_watcher.sh"
   },
   "keywords": [
     "javascript",
